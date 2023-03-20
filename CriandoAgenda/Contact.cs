@@ -3,14 +3,12 @@
     internal class Contact
     {
         public string Name { get; set; }
-        public Address Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
 
         public Contact(string name, string phone, string email)
         {
             Name = name;
-            Address = new Address();
             Phone = phone;
             Email = email;
         }
@@ -30,18 +28,13 @@
             Email = email;
         }
 
-        public void EditAddress (Address address)
-        {
-            Address = address;
-        }
-
         public override string ToString()
         {
             if (Email == null)
             {
-                return $"Name: {Name} | Address : {Address} \nPhone: {Phone}";
+                return $"Name: {Name} \nPhone: {Phone}";
             }
-            return $"Name: {Name} | Address : {Address} \nPhone: {Phone} | Email: {Email}";
+            return $"Name: {Name} \nPhone: {Phone} | Email: {Email}";
         }
     }
 }
