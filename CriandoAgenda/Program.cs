@@ -171,7 +171,7 @@ void AllContacts(List<Contact> contacts)
 
     foreach (var contact in contacts)
     {
-        Console.WriteLine("{0} - {1} - {2}", contact.Name, contact.Phone, contact.Email);
+        Console.WriteLine("{0}", contact);
     }
 
     Console.WriteLine();
@@ -201,7 +201,7 @@ Contact ReturnOneContact(List<Contact> contacts, string name)
         int count = 0;
         foreach (var contact in contactResult)
         {
-            Console.WriteLine(" {0}) {1} - {2} - {3}", ++count, contact.Name, contact.Phone, contact.Email);
+            Console.WriteLine(" {0}) {1}", ++count, contact);
         }
         Console.WriteLine();
         Console.Write("Há mais de um contato, insira o número do índice do contato desejado: ");
