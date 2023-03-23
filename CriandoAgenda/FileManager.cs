@@ -9,7 +9,7 @@
 
         public FileManager(string fileName)
         {
-            FullPath = Path + fileName + ".txt";
+            FullPath = Path + fileName + ".ecl";
         }
 
         public void CreateFile(List<Contact> contacts)
