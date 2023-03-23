@@ -35,8 +35,17 @@ do
             DeleteContact(phoneBook);
             break;
 
-        // Sair do programa
+        // Salvar em um arquivo
         case 6:
+            FileSaving(phoneBook);
+            break;
+
+        case 7:
+            LoadFile(ref phoneBook);
+            break;
+
+        // Sair do programa
+        case 8:
             AllContacts(phoneBook);
             Environment.Exit(0);
             break;
@@ -57,7 +66,9 @@ int Menu()
     Console.WriteLine("3 - Visualizar contatos");
     Console.WriteLine("4 - Pesquisar contatos");
     Console.WriteLine("5 - Remover contato");
-    Console.WriteLine("6 - Sair");
+    Console.WriteLine("6 - Salvar em arquivo");
+    Console.WriteLine("7 - Carregar arquivo");
+    Console.WriteLine("8 - Sair");
     int.TryParse(Console.ReadLine(), out int opt);
 
     return opt;
@@ -276,4 +287,67 @@ void SearchContact(List<Contact> contacts)
     }
 
     else AllContacts(searchedContacts);
+}
+
+void FileSaving(List<Contact> contacts)
+{
+    Console.WriteLine("SALVAR EM ARQUIVO");
+
+    Console.Write("Escolha o nome para o arquivo: ");
+    string fileName = Console.ReadLine();
+
+    FileManager fm = new(fileName);
+
+    Console.WriteLine();
+    if (fm.FileExists())
+    {
+        int opt = 0;
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("Arquivo existente, o que deseja fazer?");
+            Console.WriteLine("1 - Sobrescrever");
+            Console.WriteLine("2 - Juntar dados");
+            Console.WriteLine("3 - Cancelar");
+            int.TryParse(Console.ReadLine(), out opt);
+
+            if (opt > 3 || opt < 1)
+            {
+                Console.WriteLine("Opção inválida");
+                Console.WriteLine("Aperte ENTER para continuar");
+                Console.ReadLine();
+            }
+        } while (opt == 0);
+
+        if (opt == 1) fm.CreateFile(phoneBook);
+        else if (opt == 2) fm.AppendFile(phoneBook);
+
+        Console.WriteLine("Operação concluida");
+    }
+    else
+    {
+        fm.CreateFile(phoneBook);
+        Console.WriteLine("Arquivo criado");
+    }
+    Console.WriteLine("Aperte ENTER para continuar");
+    Console.ReadLine();
+}
+
+void LoadFile(ref List<Contact> contacts)
+{
+    Console.WriteLine("CARREGAR ARQUIVO");
+
+    Console.Write("Digite o nome do arquivo: ");
+    string fileName = Console.ReadLine();
+
+    FileManager fm = new(fileName);
+    if (!fm.FileExists()) Console.WriteLine("Arquivo inexistente!");
+    else
+    {
+        contacts = fm.LoadFile();
+        Console.WriteLine("Lista atualizada!");
+    }
+
+    Console.WriteLine("Aperte ENTER para continuar");
+    Console.ReadLine();
 }

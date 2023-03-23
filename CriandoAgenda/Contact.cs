@@ -32,9 +32,9 @@
         {
             if (Email == null)
             {
-                return $"Name: {Name} \nPhone: {Phone}";
+                return $"Name: {Name} | Phone: {Phone}";
             }
-            return $"Name: {Name} \nPhone: {Phone} | Email: {Email}";
+            return $"Name: {Name} | Phone: {Phone} | Email: {Email}";
         }
     }
 }
