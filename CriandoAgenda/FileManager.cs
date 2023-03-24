@@ -49,7 +49,7 @@
                 objCreator = line.Split('|');
                 for (int i = 0; i < objCreator.Length; i++)
                 {
-                    int index = objCreator[i].IndexOf('|');
+                    int index = objCreator[i].IndexOf(':');
                     objCreator[i] = objCreator[i].Substring(index + 1);
                 }
                 contacts.Add(new Contact(objCreator[0], objCreator[1], objCreator[2]));
